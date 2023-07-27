@@ -1,8 +1,8 @@
 package com.quanpham.demo.services;
 
-import com.quanpham.demo.BaseRespone.request.CategoryCreateRequest;
-import com.quanpham.demo.BaseRespone.request.CategoryRequest;
-import com.quanpham.demo.BaseRespone.response.BaseResponse;
+import com.quanpham.demo.baserequest.request.CategoryCreateRequest;
+import com.quanpham.demo.baserequest.request.CategoryRequest;
+import com.quanpham.demo.baserequest.response.BaseResponse;
 
 public interface ICategoryService {
 

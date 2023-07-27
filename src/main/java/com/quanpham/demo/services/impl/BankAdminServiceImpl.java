@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.quanpham.demo.BaseRespone.request.BankAdminRequest;
-import com.quanpham.demo.BaseRespone.response.BaseResponse;
+import com.quanpham.demo.baserequest.request.BankAdminRequest;
+import com.quanpham.demo.baserequest.response.BaseResponse;
 import com.quanpham.demo.models.BankAdmin;
 import com.quanpham.demo.models.Product;
 import com.quanpham.demo.repository.IBankAdminData;

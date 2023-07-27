@@ -1,7 +1,7 @@
 package com.quanpham.demo.services;
 
-import com.quanpham.demo.BaseRespone.response.BaseResponse;
-import com.quanpham.demo.BaseRespone.response.TicketResponse;
+import com.quanpham.demo.baserequest.response.BaseResponse;
+import com.quanpham.demo.baserequest.response.TicketResponse;
 
 public interface ITicketService {
 

@@ -36,14 +36,14 @@ public class BankAdmin extends AbstractEntity implements UserDetails {
     @Column(name = "username")
 
     private String username;
+
     @Column(name = "password")
-
     private String password;
+
     @Column(name = "fullname")
-
     private String fullname;
-    @Column(name = "phonenumber")
 
+    @Column(name = "phonenumber")
     private String phone;
     private String status;
 

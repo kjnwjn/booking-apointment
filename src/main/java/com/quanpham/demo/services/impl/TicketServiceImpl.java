@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.quanpham.demo.BaseRespone.response.BaseResponse;
-import com.quanpham.demo.BaseRespone.response.TicketResponse;
+import com.quanpham.demo.baserequest.response.BaseResponse;
+import com.quanpham.demo.baserequest.response.TicketResponse;
 import com.quanpham.demo.models.Ticket;
 import com.quanpham.demo.repository.ITicketData;
 import com.quanpham.demo.services.ITicketService;

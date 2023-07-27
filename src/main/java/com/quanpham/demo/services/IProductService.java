@@ -1,8 +1,8 @@
 package com.quanpham.demo.services;
 
-import com.quanpham.demo.BaseRespone.request.ProductRequest;
-import com.quanpham.demo.BaseRespone.response.BaseResponse;
-import com.quanpham.demo.BaseRespone.response.ProductResponse;
+import com.quanpham.demo.baserequest.request.ProductRequest;
+import com.quanpham.demo.baserequest.response.BaseResponse;
+import com.quanpham.demo.baserequest.response.ProductResponse;
 
 public interface IProductService {
 

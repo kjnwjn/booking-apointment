@@ -2,8 +2,8 @@ package com.quanpham.demo.services;
 
 import javax.validation.Valid;
 
-import com.quanpham.demo.BaseRespone.request.BankAdminRequest;
-import com.quanpham.demo.BaseRespone.response.BaseResponse;
+import com.quanpham.demo.baserequest.request.BankAdminRequest;
+import com.quanpham.demo.baserequest.response.BaseResponse;
 
 public interface IBankAdminService {
 

@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.quanpham.demo.BaseRespone.request.CategoryCreateRequest;
-import com.quanpham.demo.BaseRespone.request.CategoryRequest;
-import com.quanpham.demo.BaseRespone.response.BaseResponse;
+import com.quanpham.demo.baserequest.request.CategoryCreateRequest;
+import com.quanpham.demo.baserequest.request.CategoryRequest;
+import com.quanpham.demo.baserequest.response.BaseResponse;
 import com.quanpham.demo.models.Category;
 import com.quanpham.demo.repository.ICategoryData;
 import com.quanpham.demo.services.ICategoryService;

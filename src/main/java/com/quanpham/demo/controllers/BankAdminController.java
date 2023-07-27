@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quanpham.demo.BaseRespone.request.BankAdminRequest;
-import com.quanpham.demo.BaseRespone.response.BaseResponse;
+import com.quanpham.demo.baserequest.request.BankAdminRequest;
+import com.quanpham.demo.baserequest.response.BaseResponse;
 import com.quanpham.demo.services.IBankAdminService;
 
 @CrossOrigin("*")
