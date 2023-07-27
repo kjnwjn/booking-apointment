@@ -1,0 +1,14 @@
+FROM maven:3.9.3-eclipse-temurin-17-alpine AS s1
+WORKDIR /app
+
+COPY . .
+RUN mvn clean install -DskipTests
+
+########################################################
+FROM eclipse-temurin:17.0.7_7-jre-alpine
+WORKDIR /opt/com.quanpham
+COPY --from=s1 /app/target/demo-1.0.0.jar .
+ENV PROFILE=default
+
+EXPOSE 8800
+CMD ["java", "-jar" ,"-Dspring.profiles.active=${PROFILE}", "demo-1.0.0.jar"]

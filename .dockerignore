@@ -1,0 +1,11 @@
+.git
+.mvn
+.vscode
+database
+mvnw*
+HELP.md
+docker-compose.yml
+Dockerfile*
+.dockerignore
+target
+!target/*.jar

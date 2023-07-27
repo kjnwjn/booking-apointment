@@ -1,0 +1,36 @@
+server:
+    # address: 10.86.153.32
+    port: 8080
+    servlet:
+        context-path: /api/v1
+logging:
+    level:
+        org:
+            springframework:
+                security: TRACE
+spring:
+    datasource:
+        url: jdbc:postgresql://localho.st:5432/demo
+        username: postgres
+        password: 123456a@
+        driver-class-name: org.postgresql.Driver
+    # security:
+    #     oauth2:
+    #         resourceserver:
+    #             jwt:
+    #                 jwk-set-uri: https://ep.datvu.tech:8200/realms/ep/protocol/openid-connect/certs
+    security:
+        oauth2:
+            client:
+                registration:
+                    google:
+                        client-id: 165005699836-cifp538504nrnh6uhg51mdo57e2nhfma.apps.googleusercontent.com
+                        client-secret: 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
+                    github:
+                        client-id: 82097d9ba346b535a463
+                        client-secret: 52bcfeb5c6e93642c9515afc610c1094ac914f86
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
