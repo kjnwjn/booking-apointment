@@ -2,7 +2,7 @@ package com.quanpham.demo.enums;
 
 public interface RoleUserEnum {
     enum RoleUser {
-        GDV(1), ADMIN(2);
+        USER(1), ADMIN(2);
 
         private final int value;
 
@@ -17,7 +17,7 @@ public interface RoleUserEnum {
         public String getName() {
             switch (this) {
 
-                case GDV:
+                case USER:
                     return "GDV";
                 case ADMIN:
                     return "ADMIN";
