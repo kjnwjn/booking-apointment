@@ -1,11 +1,7 @@
 package com.quanpham.demo.BaseRespone.response;
 
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.NumberFormat;
 
 import lombok.Data;
 

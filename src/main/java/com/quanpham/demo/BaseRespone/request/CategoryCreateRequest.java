@@ -1,7 +1,6 @@
 package com.quanpham.demo.BaseRespone.request;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AccessLevel;

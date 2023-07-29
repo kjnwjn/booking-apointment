@@ -1,7 +1,5 @@
 package com.quanpham.demo.services;
 
-import javax.validation.Valid;
-
 import com.quanpham.demo.BaseRespone.request.BankAdminRequest;
 import com.quanpham.demo.BaseRespone.response.BaseResponse;
 

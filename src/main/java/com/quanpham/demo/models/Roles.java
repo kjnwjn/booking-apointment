@@ -1,6 +1,8 @@
 package com.quanpham.demo.models;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
 
 import com.quanpham.demo.enums.RoleUserEnum;
 
@@ -22,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "roles")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Roles {
+public class Roles implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,7 +36,12 @@ public class Roles {
     private String desc;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    // @ManyToMany(mappedBy = "roles")
-    // private Set<BankAdmin> bankAdmin;
+
+    // private Collection<BankAdmin> bankAdmin;
+
+    @Override
+    public String getAuthority() {
+        return name.getName();
+    }
 
 }

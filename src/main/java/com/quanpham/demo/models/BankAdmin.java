@@ -38,25 +38,19 @@ public class BankAdmin extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "username")
-
-    private String username;
+    private String email;
     @Column(name = "password")
-
     private String password;
-    @Column(name = "fullname")
 
-    private String fullname;
+    @Column(name = "firstname")
+    private String firstName;
+
+    @Column(name = "lastname")
+    private String lastName;
+
     @Column(name = "phonenumber")
-
     private String phone;
     private String status;
-
-    private String email;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Roles> roles = new HashSet<>();
 
     // private Set<Roles> roles;
     @Column(name = "category_id")

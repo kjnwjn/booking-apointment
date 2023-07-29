@@ -2,8 +2,6 @@ package com.quanpham.demo.BaseRespone.response;
 
 import javax.validation.constraints.NotBlank;
 
-import com.quanpham.demo.models.Category;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

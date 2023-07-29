@@ -19,11 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.quanpham.demo.BaseRespone.request.CategoryCreateRequest;
 import com.quanpham.demo.BaseRespone.request.CategoryRequest;
 import com.quanpham.demo.BaseRespone.response.BaseResponse;
-import com.quanpham.demo.BaseRespone.response.TicketResponse;
-import com.quanpham.demo.models.Category;
-import com.quanpham.demo.models.Ticket;
 import com.quanpham.demo.services.ICategoryService;
-import com.quanpham.demo.services.ITicketService;
 
 @CrossOrigin("*")
 @RestController
