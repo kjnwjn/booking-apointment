@@ -1,7 +1,8 @@
 package com.quanpham.demo.services;
 
+import com.quanpham.demo.BaseRespone.request.TicketRequest;
 import com.quanpham.demo.BaseRespone.response.BaseResponse;
-import com.quanpham.demo.BaseRespone.response.TicketResponse;
+import com.quanpham.demo.models.Ticket;
 
 public interface ITicketService {
 
@@ -9,8 +10,10 @@ public interface ITicketService {
 
     BaseResponse getTicketById(String id);
 
-    BaseResponse getTicketByIdUser(String idUser);
+    BaseResponse getTicketByIdTransCounter(Long idTransCounter);
 
-    TicketResponse create(TicketResponse ticket);
+    BaseResponse create(TicketRequest ticket);
+
+    BaseResponse updateTicket(Ticket request);
 
 }

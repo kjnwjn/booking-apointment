@@ -3,10 +3,10 @@ server:
     port: 8080
     servlet:
         context-path: /api/v1
-quanpham:
-    app:
-        jwtSecret: ======================BezKoder=Spring===========================
-        jwtExpirationMs: 86400000
+# quanpham:
+#     app:
+#         jwtSecret: ======================BezKoder=Spring===========================
+#         jwtExpirationMs: 86400000
 logging:
     level:
         org:

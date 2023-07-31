@@ -13,4 +13,7 @@ public class TicketResponse extends BaseResponse {
     @Email(message = "customerEmail is required")
     private String customer_email;
 
+    @NotBlank(message = "idProduct is require")
+    private String idProduct;
+
 }

@@ -10,7 +10,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class JwtUtils {
     private static final String SECRET_KEY = "oujoksaedr8useDSku5WERoaijrfaoswkjef$";
-    private static final long EXPIRATION_TIME_MS = 3600000;
+    private static final long EXPIRATION_TIME_MS = 360000000;
     private static final String subject = "security";
 
     public static String genJwt(Map<String, Object> claims) {

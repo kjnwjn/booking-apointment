@@ -1,23 +1,17 @@
 package com.quanpham.demo.models;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.UUID;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
-import lombok.AccessLevel;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.Table;
+
+import com.quanpham.demo.enums.StatusTicketEnum;
+
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,30 +20,29 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "ticket")
 @Data
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Ticket extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String idUser;
+    private Long idTransCounter;
     private String customerName;
     private String customerEmail;
-    private String timeline;
-    private int status;
+    private StatusTicketEnum.StatusTicket status;
     private int rate;
     @OneToOne()
     @JoinColumn(name = "id_product")
     private Product product;
 
-    public Ticket(String idUser, String customerName, String customerEmail,
-            String timeline,
-            int status, int rate) {
-        this.idUser = idUser;
+    public Ticket(Long idTransCounter, Product product, String customerName, String customerEmail,
+            StatusTicketEnum.StatusTicket status,
+            int rate) {
+        this.idTransCounter = idTransCounter;
+        this.product = product;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
-        this.timeline = timeline;
         this.status = status;
         this.rate = rate;
     }
@@ -59,6 +52,13 @@ public class Ticket extends AbstractEntity {
     public void prePersist() {
         // super để gọi thuật toán từ cha
         super.prePersist();
+
+    }
+
+    @Override
+    public void preUpdate() {
+        // TODO Auto-generated method stub
+        super.preUpdate();
     }
 
 }

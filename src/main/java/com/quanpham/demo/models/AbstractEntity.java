@@ -27,5 +27,6 @@ public class AbstractEntity {
     @PreUpdate
     public void preUpdate() {
         updatedAt = updatedAt == null ? LocalDateTime.now() : updatedAt;
+        // createdAt = createdAt;
     }
 }

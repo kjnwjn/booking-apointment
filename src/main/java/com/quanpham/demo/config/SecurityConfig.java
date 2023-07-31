@@ -34,7 +34,6 @@ public class SecurityConfig {
                 .formLogin(form -> form.loginProcessingUrl("/login")).httpBasic(withDefaults())
                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         ;
-        // UsernamePasswordAuthenticationFilter
 
         return http.build();
 

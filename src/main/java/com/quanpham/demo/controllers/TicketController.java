@@ -1,5 +1,6 @@
 package com.quanpham.demo.controllers;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quanpham.demo.BaseRespone.request.TicketRequest;
 import com.quanpham.demo.BaseRespone.response.BaseResponse;
 import com.quanpham.demo.BaseRespone.response.TicketResponse;
 import com.quanpham.demo.models.Ticket;
@@ -26,6 +29,7 @@ public class TicketController {
     @Autowired
     private ITicketService ticketService;
 
+    @RolesAllowed("ADMIN")
     @GetMapping("/get-all")
     public ResponseEntity<BaseResponse> getAllTickets() {
         return new ResponseEntity<>(this.ticketService.getAllTickets(), HttpStatus.OK);
@@ -37,21 +41,21 @@ public class TicketController {
         return ResponseEntity.ok(this.ticketService.getTicketById(id));
     }
 
-    @GetMapping("/get-by-user")
-    public ResponseEntity<BaseResponse> getTicketByIdUser(@RequestParam("idUser") String idUser) {
+    @GetMapping("/get-by-idTransCounter")
+    public ResponseEntity<BaseResponse> getTicketByIdTransCounter(@RequestParam("idTransCounter") Long idTransCounter) {
 
-        return ResponseEntity.ok(this.ticketService.getTicketByIdUser(idUser));
+        return ResponseEntity.ok(this.ticketService.getTicketByIdTransCounter(idTransCounter));
     }
 
     @PostMapping("/create")
-    public ResponseEntity<TicketResponse> addTicket(@Valid @RequestBody TicketResponse Ticket) {
+    public ResponseEntity<BaseResponse> addTicket(@Valid @RequestBody TicketRequest Ticket) {
         return ResponseEntity.ok(ticketService.create(Ticket));
     }
 
-    // @PutMapping("/{id}")
-    // public BaseResponse updateTicket(@RequestBody Ticket request) {
-    // return this.ticketService.updateTicket(request);
-    // }
+    @PutMapping("/{id}")
+    public ResponseEntity<BaseResponse> updateTicket(@RequestBody Ticket request) {
+        return ResponseEntity.ok(this.ticketService.updateTicket(request));
+    }
 
     // @DeleteMapping("/{id}")
     // public BaseResponse deleteTicket(@PathVariable("id") String id) {

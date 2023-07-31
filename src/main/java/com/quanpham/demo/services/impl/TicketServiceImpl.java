@@ -6,10 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.quanpham.demo.BaseRespone.request.TicketRequest;
 import com.quanpham.demo.BaseRespone.response.BaseResponse;
-import com.quanpham.demo.BaseRespone.response.TicketResponse;
+import com.quanpham.demo.enums.StatusTicketEnum;
 import com.quanpham.demo.models.Ticket;
+import com.quanpham.demo.models.TransCounter;
 import com.quanpham.demo.repository.ITicketData;
+import com.quanpham.demo.repository.ITransCounterData;
 import com.quanpham.demo.services.ITicketService;
 
 @Service
@@ -17,6 +20,9 @@ public class TicketServiceImpl implements ITicketService {
 
     @Autowired
     private ITicketData ticketData;
+
+    @Autowired
+    private ITransCounterData transCounterData;
 
     @Override
     public BaseResponse getAllTickets() {
@@ -53,9 +59,9 @@ public class TicketServiceImpl implements ITicketService {
     }
 
     @Override
-    public BaseResponse getTicketByIdUser(String idUser) {
+    public BaseResponse getTicketByIdTransCounter(Long idTransCounter) {
         BaseResponse response = new BaseResponse();
-        List<Ticket> ticketList = this.ticketData.findByIdUser(idUser);
+        List<Ticket> ticketList = this.ticketData.findByIdTransCounter(idTransCounter);
         if (!ticketList.isEmpty()) {
             response.setData(ticketList);
             response.setErrorCode("0");
@@ -68,18 +74,44 @@ public class TicketServiceImpl implements ITicketService {
     }
 
     @Override
-    public TicketResponse create(TicketResponse ticket) {
-        TicketResponse response = new TicketResponse();
-        // Object ticket = this.ticketData.findByIdUser(idUser);
-        if (ticket != null) {
-            // response.setData(ticket);
+    public BaseResponse create(TicketRequest ticket) {
+        try {
+            BaseResponse response = new BaseResponse();
+            List<TransCounter> transCounterList = transCounterData.findByIdProduct(ticket.getProduct().getIdProduct());
+            if (!transCounterList.isEmpty()) {
+                TransCounter transCounter = transCounterList.get(0);
+                Ticket ticketNew = new Ticket(transCounter.getId(), ticket.getProduct(), ticket.getCustomer_name(),
+                        ticket.getCustomer_email(), StatusTicketEnum.StatusTicket.INITIAL, 1);
+
+                ticketData.save(ticketNew);
+                response.setData(ticketNew);
+                response.setErrorCode("0");
+                response.setErrorDesc("Thành công");
+            } else {
+                response.setErrorCode("1");
+                response.setErrorDesc("Thất bại");
+            }
+            return response;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+
+    }
+
+    @Override
+    public BaseResponse updateTicket(Ticket request) {
+        try {
+            BaseResponse response = new BaseResponse();
+            ticketData.save(request);
+            response.setData(request);
             response.setErrorCode("0");
             response.setErrorDesc("Thành công");
-        } else {
-            response.setErrorCode("1");
-            response.setErrorDesc("Thất bại");
+            return response;
+        } catch (Exception e) {
+            // System.out.println(e);
+            return null;
         }
-        return response;
     }
 
 }
