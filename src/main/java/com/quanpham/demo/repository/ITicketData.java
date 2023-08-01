@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.quanpham.demo.models.Ticket;
 
@@ -15,4 +16,5 @@ public interface ITicketData extends JpaRepository<Ticket, Long> {
     List<Ticket> findByIdProduct(Long idProduct);
 
     List<Ticket> findByIdTransCounter(Long idTransCounter);
+
 }

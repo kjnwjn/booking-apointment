@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quanpham.demo.BaseRespone.request.TicketRequest;
+import com.quanpham.demo.BaseRespone.request.UpdateTicketRequest;
 import com.quanpham.demo.BaseRespone.response.BaseResponse;
 import com.quanpham.demo.BaseRespone.response.TicketResponse;
 import com.quanpham.demo.models.Ticket;
@@ -36,7 +38,7 @@ public class TicketController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<BaseResponse> getTicketById(@PathVariable("id") String id) {
+    public ResponseEntity<BaseResponse> getTicketById(@PathVariable("id") Long id) {
 
         return ResponseEntity.ok(this.ticketService.getTicketById(id));
     }
@@ -53,12 +55,13 @@ public class TicketController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BaseResponse> updateTicket(@RequestBody Ticket request) {
-        return ResponseEntity.ok(this.ticketService.updateTicket(request));
+    public ResponseEntity<BaseResponse> updateTicket(@PathVariable("id") Long id,
+            @RequestBody UpdateTicketRequest request) {
+        return ResponseEntity.ok(this.ticketService.updateTicket(id, request));
     }
 
-    // @DeleteMapping("/{id}")
-    // public BaseResponse deleteTicket(@PathVariable("id") String id) {
-    // return this.ticketService.deleteTicket(id);
-    // }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<BaseResponse> deleteTicket(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(this.ticketService.deleteTicket(id));
+    }
 }

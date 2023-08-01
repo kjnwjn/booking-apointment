@@ -24,7 +24,7 @@ public class TransCounter extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long num_of_ticket;
+    private Long numOfTicket;
     private String status;
     @OneToOne()
     @JoinColumn(name = "id_user")

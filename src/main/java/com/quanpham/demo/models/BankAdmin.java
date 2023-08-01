@@ -52,9 +52,6 @@ public class BankAdmin extends AbstractEntity {
     private String phone;
     private String status;
 
-    // private Set<Roles> roles;
-    // @Column(name = "category_id")
-    // private Long categoryId;
     private int rate;
 
     @Override
