@@ -5,6 +5,9 @@ server:
         context-path: /api/v1
         session:
             persistent : false
+socket-server:
+    port: 8085
+    host: 10.86.153.32
 # quanpham:
 #     app:
 #         jwtSecret: ======================BezKoder=Spring===========================

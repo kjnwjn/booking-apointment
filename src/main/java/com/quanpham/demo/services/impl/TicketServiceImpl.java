@@ -93,6 +93,9 @@ public class TicketServiceImpl implements ITicketService {
                 transCounter.setNumOfTicket(newNumOfTicket);
                 transCounterData.save(transCounter);
                 ticketData.save(ticketNew);
+                // socketService.sendMessage(transCounter.getId().toString(), "get_message",
+                // null, null);
+
                 response.setData(ticketNew);
                 response.setErrorCode("0");
                 response.setErrorDesc("Thành công");
@@ -116,10 +119,6 @@ public class TicketServiceImpl implements ITicketService {
             response.setData(ticketData.findById(id)
                     .map(oldItem -> {
                         Ticket newTicket = new Ticket();
-
-                        if (request.getIdTransCounter() != oldItem.getIdTransCounter()) {
-
-                        }
                         newTicket.setId(id);
                         newTicket.setCreatedAt(oldItem.getCreatedAt());
                         newTicket.setCustomerEmail(request.getCustomerEmail());

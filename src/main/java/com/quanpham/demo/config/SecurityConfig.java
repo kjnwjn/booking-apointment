@@ -26,10 +26,11 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(
-                        authorize -> authorize.antMatchers("/api/v1/**")
-                                .authenticated()
-                                .antMatchers("v3/api-docs", "swagger-ui.html")
+                        authorize -> authorize.antMatchers("/api/v1/data")
                                 .permitAll()
+                                .antMatchers("/api/v1/**")
+                                .authenticated()
+
                                 .anyRequest().authenticated())
                 .formLogin(form -> form.loginProcessingUrl("/login")).httpBasic(withDefaults())
                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class);
