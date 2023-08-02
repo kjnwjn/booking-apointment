@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.quanpham.demo.BaseRespone.request.BankAdminRequest;
 import com.quanpham.demo.BaseRespone.response.BaseResponse;
 import com.quanpham.demo.models.BankAdmin;
-import com.quanpham.demo.models.Product;
 import com.quanpham.demo.repository.IBankAdminData;
 import com.quanpham.demo.services.IBankAdminService;
 

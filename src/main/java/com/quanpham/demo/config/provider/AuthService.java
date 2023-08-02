@@ -30,21 +30,13 @@ public class AuthService implements AuthenticationProvider {
 
     private final IRolesData roleRepo;
 
-    private final PasswordEncoder passwordEncoder;
-
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String email = authentication.getPrincipal().toString();
-        String pwd = authentication.getCredentials().toString();
 
-        BankAdmin user = userRepo.findByEmail(email).orElseThrow(() -> new BadCredentialsException("User not found!"));
-
-        if (passwordEncoder.matches(pwd, user.getPassword())) {
-
-            List<Roles> roles = roleRepo.findByUserId(user.getId());
-            return UsernamePasswordAuthenticationToken.authenticated(user, "", roles);
-        }
-        throw new BadCredentialsException("Invalid password!");
+        BankAdmin user = userRepo.findByEmail(email).get();
+        List<Roles> roles = roleRepo.findByUserId(user.getId());
+        return UsernamePasswordAuthenticationToken.authenticated(user, "", roles);
 
     }
 
