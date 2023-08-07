@@ -38,6 +38,7 @@ public class TransCounter extends AbstractEntity {
 
     @Override
     public void preUpdate() {
+        System.out.println("123");
         // TODO Auto-generated method stub
         super.preUpdate();
     }
