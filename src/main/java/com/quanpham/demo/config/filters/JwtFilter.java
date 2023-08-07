@@ -48,7 +48,7 @@ public class JwtFilter extends OncePerRequestFilter {
             token = token.substring(7, token.length());
             if (JwtUtils.validateJwtToken(token)) {
                 Claims claims = JwtUtils.decodeJwtToken(token);
-                String email = claims.get("email", String.class);
+                String email = claims.get("user", String.class);
                 BankAdmin user = userRepo.findByEmail(email)
                         .orElseThrow(() -> new BadCredentialsException("User with email not found!"));
 

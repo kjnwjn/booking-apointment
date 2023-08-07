@@ -4,10 +4,10 @@ server:
     servlet:
         context-path: /api/v1
         session:
-            persistent : false
+            persistent: false
 socket-server:
     port: 8085
-    host: 10.86.153.32
+    host: 172.16.0.2
 # quanpham:
 #     app:
 #         jwtSecret: ======================BezKoder=Spring===========================

@@ -3,13 +3,10 @@ package com.quanpham.demo.controllers;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quanpham.demo.BaseRespone.request.AuthRequest;
+import com.quanpham.demo.BaseRespone.response.BankAdminResponse;
 import com.quanpham.demo.BaseRespone.response.BaseResponse;
 import com.quanpham.demo.models.BankAdmin;
 import com.quanpham.demo.models.Roles;
@@ -51,21 +49,30 @@ public class AuthController {
         BaseResponse response = new BaseResponse();
 
         Map<String, Object> claims = new HashMap<>();
-        Optional<BankAdmin> user = userRepo.findByEmail(loginDto.getEmail());
+        Map<String, Object> tokenData = new HashMap<>();
 
-        if (user.isPresent()) {
+        BankAdmin user = userRepo.findByEmail(loginDto.getEmail()).get();
 
-            if (passwordEncoder.matches(loginDto.getPassword(), user.get().getPassword())) {
+        if (user != null) {
 
-                List<Roles> roles = roleRepo.findByUserId(user.get().getId());
+            if (passwordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
+
+                List<Roles> roles = roleRepo.findByUserId(user.getId());
                 Authentication authentication = authenticationManager
                         .authenticate(new UsernamePasswordAuthenticationToken(
-                                loginDto.getEmail(), user.get().getPassword(), roles));
+                                loginDto.getEmail(), user.getPassword(), roles));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
-                claims.put("email", user.get().getEmail());
+                BankAdminResponse BankAdminResponse = new BankAdminResponse(user.getId(), user.getEmail(),
+                        user.getFirstName(), user.getLastName(), user.getPhone(), user.getStatus(), user.getRate(),
+                        roles);
                 claims.put("roles", roles);
-                response.setData(JwtUtils.genJwt(claims));
+                claims.put("email", user.getEmail());
+
+                tokenData.put("user", BankAdminResponse);
+                tokenData.put("token", JwtUtils.genJwt(claims));
+
+                response.setData(tokenData);
                 response.setErrorCode("0");
                 response.setErrorDesc("Thành công");
 
